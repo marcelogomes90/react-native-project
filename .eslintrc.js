@@ -4,6 +4,7 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	rules: {
 		'prettier/prettier': 'off',
+		'no-warning-comments': 'error',
 		indent: ['error', 'tab', { SwitchCase: 1 }],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
