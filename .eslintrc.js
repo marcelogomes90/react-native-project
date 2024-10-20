@@ -78,5 +78,27 @@ module.exports = {
 		],
 		'react/no-unstable-nested-components': ['warn', { allowAsProps: true }],
 		'eol-last': ['error', 'always']
+	},
+	settings: {
+		'import/resolver': {
+			typescript: {
+				project: './tsconfig.json'
+			},
+		  'babel-module': {
+				alias: {
+					'@components': './src/components/index.ts',
+					'@screens': './src/screens',
+					'@utils': './src/utils',
+					'@assets': './src/assets',
+					'@constants': './src/constants',
+					'@services': './src/services',
+					'@store': './src/store',
+					'@hooks': './src/hooks',
+					'@navigators': './src/navigators',
+					'@hoc': './src/hoc',
+					'@config': './src/config'
+				}
+		  	}
+		}
 	}
 };
