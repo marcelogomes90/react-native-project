@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, SPACING } from '../../constants/theme';
+import { COLORS, SPACING } from '@constants/theme';
 
 interface ContainerStylesProps {
 	padded?: boolean;

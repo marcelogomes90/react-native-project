@@ -1,17 +1,9 @@
-import BottomSheet from './BottomSheet';
-import Button from './Button';
-import Container from './Container';
-import Drawer from './Drawer';
-import EmptyState from './EmptyState';
-import Input from './Input';
-import Text from './Text';
-
-export {
-	BottomSheet,
-	Button,
-	Container,
-	Input,
-	Drawer,
-	Text,
-	EmptyState
-};
+export { default as BottomSheet } from './BottomSheet';
+export { default as Button } from './Button';
+export { default as Container } from './Container';
+export { default as Input } from './Input';
+export { default as Drawer } from './Drawer';
+export { default as Text } from './Text';
+export { default as EmptyState } from './EmptyState';
+export { default as Card } from './Card';
+export { default as Flex } from './Flex';

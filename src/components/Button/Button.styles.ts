@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { BORDER_RADIUS, SPACING, COLORS, TEXT } from '../../constants/theme';
+import { BORDER_RADIUS, SPACING, COLORS, TEXT } from '@constants/theme';
 
 interface ButtonStylesProps {
 	disabled?: boolean;

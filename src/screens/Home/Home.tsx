@@ -1,4 +1,4 @@
-import { EmptyState } from '../../components';
+import { EmptyState } from '@components/index';
 
 const Home = () => <EmptyState />;
 

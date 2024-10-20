@@ -1,10 +1,11 @@
 import { useCallback, useMemo, useState } from 'react';
 import { TextInput, View, ViewStyle } from 'react-native';
 
-import { COLORS } from '../../constants/theme';
 import Text from '../Text';
 
 import { createInputStyles } from './input.styles';
+
+import { COLORS } from '@constants/theme';
 
 interface InputProps {
 	value?: string;

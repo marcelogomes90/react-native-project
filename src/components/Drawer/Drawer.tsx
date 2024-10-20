@@ -6,12 +6,13 @@ import React, { useRef, useEffect, useMemo, useCallback } from 'react';
 import { View, TouchableWithoutFeedback, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { COLORS } from '../../constants/theme';
-import { reset } from '../../navigators/NavigatorsRef';
-import { usernameSaved } from '../../screens/Login/Login.state';
 import Text from '../Text';
 
 import { styles } from './Drawer.styles';
+
+import { COLORS } from '@constants/theme';
+import { reset } from '@navigators/NavigatorsRef';
+import { usernameSaved } from '@screens/Login/Login.state';
 
 interface CustomDrawerProps {
 	isVisible: boolean;

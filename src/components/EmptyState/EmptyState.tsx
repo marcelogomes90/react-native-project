@@ -1,4 +1,5 @@
 import { Image } from 'react-native';
+import { ViewStyle } from 'react-native';
 
 import Container from '../Container';
 import Text from '../Text';
@@ -10,8 +11,12 @@ const EmptyStateImage = () => (
 	/>
 );
 
-const EmptyState = () => (
-	<Container flex padded style={{ justifyContent: 'center' }}>
+interface EmptyStateProps {
+  style?: ViewStyle;
+}
+
+const EmptyState = ({ style }: EmptyStateProps) => (
+	<Container flex padded style={[{ justifyContent: 'center' }, style]}>
 		<EmptyStateImage />
 		<Text textAlign="center" type="h3" weight="semiBold">Nenhum item encontrado</Text>
 	</Container>

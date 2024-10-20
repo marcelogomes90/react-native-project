@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text as RNText, TextProps, TextStyle } from 'react-native';
 
-import { TEXT } from '../../constants/theme';
-
 import { createTextStyles } from './Text.styles';
+
+import { TEXT } from '@constants/theme';
 
 interface TextComponentProps extends TextProps {
 	children: React.ReactNode;

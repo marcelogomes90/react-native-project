@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/named
-import { createSlice, createEntityAdapter, EntityState } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter, EntityState, PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchCustomers } from '../../services/customers';
-import { Customer } from '../../types/customer';
+import { deleteCustomer, fetchCustomers } from '@services/customers';
+import { Customer } from 'src/types/customer';
 
 export const customersEntitiesAdapter = createEntityAdapter();
 
@@ -11,8 +11,11 @@ const customersEntitiesSlice = createSlice({
 	initialState: customersEntitiesAdapter.getInitialState(),
 	extraReducers: builder => {
 		builder
-			.addCase(fetchCustomers.fulfilled, (state, action) => {
-				customersEntitiesAdapter.setMany(state, action.payload?.clients || []);
+			.addCase(fetchCustomers.fulfilled, (state, action: PayloadAction<{ clients: Customer[] }>) => {
+				customersEntitiesAdapter.setMany(state, action.payload.clients || []);
+			})
+			.addCase(deleteCustomer.fulfilled, (state, action: PayloadAction<string>) => {
+				customersEntitiesAdapter.removeOne(state, action.payload);
 			});
 	},
 	reducers: {}

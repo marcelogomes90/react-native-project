@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Container, Input, Text } from '../../components';
+import { Button, Container, Input, Text } from '@components/index';
 
 interface LoginProps {
     onEnterPress: () => void;

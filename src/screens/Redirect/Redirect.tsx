@@ -1,8 +1,8 @@
 import { Image, View } from 'react-native';
 
-import { Button } from '../../components';
-
 import { redirectStyles } from './Redirect.styles';
+
+import { Button } from '@components/index';
 
 const Logo = () => (
 	<Image

@@ -4,11 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Host } from 'react-native-portalize';
 
-import LoginScreen from '../screens/Login';
-import RedirectScreen from '../screens/Redirect';
-
 import AppNavigator from './AppNavigator';
 import { navigationRef } from './NavigatorsRef';
+
+import LoginScreen from '@screens/Login';
+import RedirectScreen from '@screens/Redirect';
+
 const Stack = createNativeStackNavigator();
 const RootFullScreen = { flex: 1 };
 

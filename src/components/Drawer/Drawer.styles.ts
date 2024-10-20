@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, SPACING } from '../../constants/theme';
+import { COLORS, SPACING } from '@constants/theme';
 
 export const styles = StyleSheet.create({
 	overlay: {
@@ -17,17 +17,17 @@ export const styles = StyleSheet.create({
 		top: 0,
 		bottom: 0,
 		paddingTop: 30,
-		width: '100%', // Ocupa toda a largura
+		width: '100%',
 		backgroundColor: 'white',
 		padding: 20,
 		shadowColor: COLORS.dark.high,
-		shadowOffset: { width: 0, height: -2 }, // Sombra para cima
+		shadowOffset: { width: 0, height: -2 },
 		shadowOpacity: 0.8,
 		shadowRadius: 2,
 		elevation: 5,
-		borderTopLeftRadius: SPACING.lg, // Bordas superiores arredondadas
-		borderTopRightRadius: SPACING.lg, // Bordas superiores arredondadas
-		marginTop: 200 // Margem no topo para não ocupar a tela toda verticalmente
+		borderTopLeftRadius: SPACING.lg,
+		borderTopRightRadius: SPACING.lg,
+		marginTop: 200
 	},
 	icon: {
 		marginRight: SPACING.lg

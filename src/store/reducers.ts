@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import customersListReducer from '../screens/CurstomersList/CustomersList.state';
-import loginReducer from '../screens/Login/Login.state';
-
 import custmersReducer from './entities/customers';
+
+import customersListReducer from '@screens/CurstomersList/CustomersList.state';
+import loginReducer from '@screens/Login/Login.state';
 
 export const rootReducer = combineReducers({
 	login: loginReducer,

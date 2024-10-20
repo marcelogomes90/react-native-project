@@ -1,10 +1,11 @@
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
-import { reset } from '../../navigators/NavigatorsRef';
 import { getLoginState } from '../Login/Login.state';
 
 import Redirect from './Redirect';
+
+import { reset } from '@navigators/NavigatorsRef';
 
 const RedirectContainer = () => {
 	const { username } = useSelector(getLoginState);

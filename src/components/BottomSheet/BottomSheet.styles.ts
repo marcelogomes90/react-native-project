@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { SPACING } from '../../constants/theme';
+import { SPACING } from '@constants/theme';
 
 export const createBottomSheetStyles = ({ padded }: { padded: boolean }) => StyleSheet.create({
 	container: {

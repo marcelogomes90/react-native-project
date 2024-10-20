@@ -1,6 +1,6 @@
 import { TextStyle } from 'react-native';
 
-import { COLORS, TEXT } from '../../constants/theme';
+import { COLORS, TEXT } from '@constants/theme';
 
 interface TextStylesProps {
 	type?: keyof typeof TEXT.type;

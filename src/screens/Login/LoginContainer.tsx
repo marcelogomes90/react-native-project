@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { reset } from '../../navigators/NavigatorsRef';
-
 import Login from './Login';
 import { usernameSaved } from './Login.state';
+
+import { reset } from '@navigators/NavigatorsRef';
 
 const LoginContainer = () => {
 	const dispatch = useDispatch();
