@@ -4,8 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useRef, useEffect, useMemo, useCallback } from 'react';
 import { View, TouchableWithoutFeedback, Animated, TouchableOpacity, Dimensions } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import { COLORS } from '../../constants/theme';
+import { reset } from '../../navigators/NavigatorsRef';
+import { usernameSaved } from '../../screens/Login/Login.state';
 import Text from '../Text';
 
 import { styles } from './Drawer.styles';
@@ -27,9 +30,16 @@ const { height: windowHeight } = Dimensions.get('window');
 
 const CustomDrawer: React.FC<CustomDrawerProps> = ({ isVisible, toggleDrawer }) => {
 	const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+	const dispatch = useDispatch();
 	const [selectedOption, setSelectedOption] = React.useState<string>('Home');
 
 	const slideAnim = useRef(new Animated.Value(windowHeight)).current;
+
+	const onLogoutPress = useCallback(() => {
+		dispatch(usernameSaved(null));
+		setSelectedOption('Home');
+		reset('Login');
+	}, [dispatch]);
 
 	useEffect(() => {
 		Animated.timing(slideAnim, {
@@ -69,7 +79,13 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({ isVisible, toggleDrawer }) 
 		color: COLORS.dark.pure,
 		route: 'ProductsList',
 		onPress: () => handleNavigate('ProductsList')
-	}]), [handleNavigate]);
+	}, {
+		icon: 'log-out' as keyof typeof Feather.glyphMap,
+		label: 'Sair',
+		color: COLORS.dark.pure,
+		route: 'Login',
+		onPress: onLogoutPress
+	}]), [handleNavigate, onLogoutPress]);
 
 	const renderAction = useCallback(({ icon, label, onPress, route }: MenuItemProps) => (
 		<TouchableOpacity key={label} style={styles.action} onPress={onPress}>
