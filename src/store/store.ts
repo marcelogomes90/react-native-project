@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, PERSIST } from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
-import rootReducer from './reducers';
+import { RootState, rootReducer } from './reducers';
 
 const persistConfig = {
 	key: 'root',
@@ -12,7 +12,7 @@ const persistConfig = {
 	blacklist: []
 };
 
-const pReducer = persistReducer(persistConfig, rootReducer);
+const pReducer = persistReducer<RootState>(persistConfig, rootReducer);
 
 export const store = configureStore({
 	reducer: pReducer,
@@ -26,3 +26,5 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+export type AppDispatch = typeof store.dispatch;

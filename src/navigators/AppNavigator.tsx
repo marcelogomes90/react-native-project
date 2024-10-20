@@ -5,7 +5,7 @@ import { Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { Drawer } from '../components';
-import CustomersListScreen from '../screens/CurstomersList/CustomersList';
+import CustomersListScreen from '../screens/CurstomersList';
 import HomeScreen from '../screens/Home/Home';
 import ProductsListScreen from '../screens/ProductsList/ProductsList';
 

@@ -1,5 +1,14 @@
-import { View } from 'react-native';
+import { Button, Container } from '../../components';
 
-const CustomersList = () => <View />;
+interface CustomersListProps {
+    onCreateCustomerPress: () => Promise<void>;
+    ids: number[];
+}
+
+const CustomersList = ({ onCreateCustomerPress }: CustomersListProps) => (
+	<Container padded scrollable>
+		<Button block outline onPress={onCreateCustomerPress}>Criar cliente</Button>
+	</Container>
+);
 
 export default CustomersList;

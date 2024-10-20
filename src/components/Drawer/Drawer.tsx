@@ -34,7 +34,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({ isVisible, toggleDrawer }) 
 	useEffect(() => {
 		Animated.timing(slideAnim, {
 			toValue: isVisible ? 0 : windowHeight,
-			duration: 300,
+			duration: 500,
 			useNativeDriver: true
 		}).start();
 	}, [isVisible, slideAnim]);

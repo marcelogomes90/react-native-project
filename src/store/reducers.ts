@@ -1,8 +1,16 @@
 import { combineReducers } from 'redux';
 
+import customersListReducer from '../screens/CurstomersList/CustomersList.state';
 import loginReducer from '../screens/Login/Login.state';
 
-export default combineReducers({
+import custmersReducer from './entities/customers';
+
+export const rootReducer = combineReducers({
 	login: loginReducer,
-	entities: combineReducers({})
+	customersList: customersListReducer,
+	entities: combineReducers({
+		customers: custmersReducer
+	})
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
