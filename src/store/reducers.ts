@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({
-	entities: combineReducers({
+import loginReducer from '../screens/Login/Login.state';
 
-	})
+export default combineReducers({
+	login: loginReducer,
+	entities: combineReducers({})
 });
