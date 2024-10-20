@@ -9,13 +9,9 @@ import Redirect from './Redirect';
 const RedirectContainer = () => {
 	const { username } = useSelector(getLoginState);
 
-	const onEnterAppPress = useCallback(() => {
-		if (username) {
-			reset('App');
-		}
-
-		reset('Login');
-	}, [username]);
+	const onEnterAppPress = useCallback(() =>
+		username ? reset('App') : reset('Login')
+	, [username]);
 
 	return (
 		<Redirect

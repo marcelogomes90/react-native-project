@@ -1,5 +1,5 @@
-import { View } from 'react-native';
+import { EmptyState } from '../../components';
 
-const Home = () => <View />;
+const Home = () => <EmptyState />;
 
 export default Home;

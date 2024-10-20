@@ -1,5 +1,5 @@
-import { View } from 'react-native';
+import { EmptyState } from '../../components';
 
-const ProductsList = () => <View />;
+const ProductsList = () => <EmptyState />;
 
 export default ProductsList;
