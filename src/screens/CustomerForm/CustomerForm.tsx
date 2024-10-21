@@ -19,7 +19,7 @@ interface CustomerFormProps {
 }
 
 const CustomerForm = forwardRef<BottomSheetModalMethods, CustomerFormProps>(({ onSubmit, control, isEdit, errors, actionLoading, onDismiss }, ref) => (
-	<BottomSheet ref={ref} padded snapPoints={['60%']} onDismiss={onDismiss}>
+	<BottomSheet ref={ref} padded snapPoints={['80%']} onDismiss={onDismiss}>
 		<Text style={{ marginVertical: SPACING.lg }} type="h5" weight="bold">{isEdit ? 'Editar' : 'Criar'} cliente</Text>
 		<InputField
 			control={control}
