@@ -5,6 +5,8 @@ import { Alert } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { customerSelected, getCustomersListState } from '../CustomersList.state';
+
 import CustomerItem from './CustomerItem';
 
 import { useBottomSheet } from '@hooks/useBottomSheet';
@@ -19,6 +21,7 @@ interface CustomerItemContainerProps {
 
 const CustomerItemContainer: React.FC<CustomerItemContainerProps> = ({ id }) => {
 	const dispatch: AppDispatch = useDispatch();
+	const { selectedCustomers } = useSelector(getCustomersListState);
 	const { open, bottomSheetRef } = useBottomSheet();
 
 	const customer = useSelector((state: {
@@ -60,13 +63,19 @@ const CustomerItemContainer: React.FC<CustomerItemContainerProps> = ({ id }) => 
 		open();
 	}, [open]);
 
+	const onSelectCustomerPress = useCallback(() => {
+		dispatch(customerSelected(id));
+	}, [dispatch, id]);
+
 	return (
 		<CustomerItem
 			bottomSheetRef={bottomSheetRef}
 			customer={customer}
 			id={id}
+			selectedCustomers={selectedCustomers}
 			onDeleteCustomerPress={onDeleteCustomerPress}
 			onEditCustomerPress={onEditCustomerPress}
+			onSelectCustomerPress={onSelectCustomerPress}
 		/>
 	);
 };

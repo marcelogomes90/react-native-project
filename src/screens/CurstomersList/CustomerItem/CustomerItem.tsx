@@ -14,27 +14,45 @@ interface CustomerItemProps {
 	onEditCustomerPress: () => void;
 	id: string;
 	bottomSheetRef: MutableRefObject<{ present: () => void; dismiss: () => void; } | null>;
+	onSelectCustomerPress: () => void;
+	selectedCustomers: string[];
 }
 
-const CustomerItem: React.FC<CustomerItemProps> = ({ customer, onDeleteCustomerPress, id, onEditCustomerPress, bottomSheetRef }) => (
+const CustomerItem: React.FC<CustomerItemProps> = ({
+	customer,
+	onDeleteCustomerPress,
+	id,
+	onEditCustomerPress,
+	bottomSheetRef,
+	onSelectCustomerPress,
+	selectedCustomers
+}) => (
 	<Card style={{ marginBottom: SPACING.md, gap: SPACING.sm }}>
 		<Text textAlign="center" type="h5" weight="bold">{customer?.name}</Text>
 		<Text textAlign="center" type="h5">{FormatterUtils.money(customer?.salary)}</Text>
 		<Text textAlign="center" type="h5">{FormatterUtils.money(customer?.companyValuation)}</Text>
 
-		<Flex direction="row" justify="space-between" style={{ marginTop: SPACING.sm, marginBottom: SPACING.xs }}>
-			<TouchableOpacity onPress={() => {}}>
-				<Feather color={COLORS.dark.pure} name="plus" size={20} />
-			</TouchableOpacity>
+		{selectedCustomers.includes(id) ? (
+			<Flex direction="row" justify="flex-end" style={{ marginTop: SPACING.sm, marginBottom: SPACING.xs }}>
+				<TouchableOpacity onPress={onSelectCustomerPress}>
+					<Feather color={COLORS.danger.pure} name="minus" size={20} />
+				</TouchableOpacity>
+			</Flex>
+		) : (
+			<Flex direction="row" justify="space-between" style={{ marginTop: SPACING.sm, marginBottom: SPACING.xs }}>
+				<TouchableOpacity onPress={onSelectCustomerPress}>
+					<Feather color={COLORS.dark.pure} name="plus" size={20} />
+				</TouchableOpacity>
 
-			<TouchableOpacity onPress={onEditCustomerPress}>
-				<Feather color={COLORS.dark.pure} name="edit" size={20} />
-			</TouchableOpacity>
+				<TouchableOpacity onPress={onEditCustomerPress}>
+					<Feather color={COLORS.dark.pure} name="edit" size={20} />
+				</TouchableOpacity>
 
-			<TouchableOpacity onPress={onDeleteCustomerPress}>
-				<Feather color={COLORS.danger.pure} name="trash" size={20} />
-			</TouchableOpacity>
-		</Flex>
+				<TouchableOpacity onPress={onDeleteCustomerPress}>
+					<Feather color={COLORS.danger.pure} name="trash" size={20} />
+				</TouchableOpacity>
+			</Flex>
+		)}
 
 		<CustomerFormContainer ref={bottomSheetRef} id={id} />
 	</Card>

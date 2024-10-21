@@ -5,7 +5,8 @@ import { FieldErrors } from 'react-hook-form';
 import { customerFormStyles } from './CustomerForm.styles';
 import { CustomerFormValues } from './CustomerFormContainer';
 
-import { BottomSheet, Button, InputField } from '@components/index';
+import { BottomSheet, Button, InputField, Text } from '@components/index';
+import { SPACING } from '@constants/theme';
 import CurrencyInputField from 'src/components/Form/CurrencyInputField';
 
 interface CustomerFormProps {
@@ -19,6 +20,7 @@ interface CustomerFormProps {
 
 const CustomerForm = forwardRef<BottomSheetModalMethods, CustomerFormProps>(({ onSubmit, control, isEdit, errors, actionLoading, onDismiss }, ref) => (
 	<BottomSheet ref={ref} padded snapPoints={['60%']} onDismiss={onDismiss}>
+		<Text style={{ marginVertical: SPACING.lg }} type="h5" weight="bold">{isEdit ? 'Editar' : 'Criar'} cliente</Text>
 		<InputField
 			control={control}
 			editable={!actionLoading}

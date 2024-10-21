@@ -13,6 +13,7 @@ interface CustomersListState {
 	refreshing: boolean;
 	paginating: boolean;
 	limit: number;
+	selectedCustomers: string[];
 }
 
 interface MetaArg {
@@ -32,7 +33,8 @@ const initialState = customersEntitiesAdapter.getInitialState({
 	totalPages: 1,
 	refreshing: false,
 	paginating: false,
-	limit: 5
+	limit: 5,
+	selectedCustomers: [] as string[]
 });
 
 const customersListReducer = createSlice({
@@ -76,11 +78,21 @@ const customersListReducer = createSlice({
 		resetState: () => initialState,
 		limitChanged: (state, action: PayloadAction<number>) => {
 			state.limit = action.payload;
+		},
+		customerSelected: (state, action: PayloadAction<string>) => {
+			if (state.selectedCustomers.includes(action.payload)) {
+				state.selectedCustomers = state.selectedCustomers.filter(id => id !== action.payload);
+			} else {
+				state.selectedCustomers = [...state.selectedCustomers, action.payload];
+			}
+		},
+		resetSelectedsCustomers: state => {
+			state.selectedCustomers = [];
 		}
 	}
 });
 
-export const { resetState, limitChanged } = customersListReducer.actions;
+export const { resetState, limitChanged, customerSelected, resetSelectedsCustomers } = customersListReducer.actions;
 
 export const getCustomersListState = (state: { customersList: CustomersListState }) => state.customersList;
 

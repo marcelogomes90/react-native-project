@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CustomersList from './CustomersList';
-import { getCustomersListState, limitChanged } from './CustomersList.state';
+import { getCustomersListState, limitChanged, resetSelectedsCustomers } from './CustomersList.state';
 
 import { useBottomSheet } from '@hooks/useBottomSheet';
 import { fetchCustomers } from '@services/customers';
@@ -11,7 +11,7 @@ import { AppDispatch } from '@store/store';
 const CustomersListContainer = () => {
 	const dispatch: AppDispatch = useDispatch();
 	const { open, bottomSheetRef } = useBottomSheet();
-	const { ids, refreshing, loading, page, totalPages, paginating, limit } = useSelector(getCustomersListState);
+	const { ids, refreshing, loading, page, totalPages, paginating, limit, selectedCustomers } = useSelector(getCustomersListState);
 
 	const canPaginate = useMemo(() => page < totalPages && !paginating, [paginating, page, totalPages]);
 
@@ -35,6 +35,10 @@ const CustomersListContainer = () => {
 		dispatch(limitChanged(newLimit));
 	}, [dispatch]);
 
+	const onClearSelectedCustomersPress = useCallback(() => {
+		dispatch(resetSelectedsCustomers());
+	}, [dispatch]);
+
 	const onRefresh = useCallback(() => {
 		dispatch(fetchCustomers({ action: 'refresh', page: 1, limit }));
 	}, [dispatch, limit]);
@@ -51,6 +55,8 @@ const CustomersListContainer = () => {
 			loading={loading}
 			paginating={paginating}
 			refreshing={refreshing}
+			selectedCustomers={selectedCustomers}
+			onClearSelectedCustomersPress={onClearSelectedCustomersPress}
 			onCreateCustomerPress={onCreateCustomerPress}
 			onLimitChange={onLimitChange}
 			onPaginate={onPaginate}

@@ -20,6 +20,8 @@ interface CustomersListProps {
 	onLimitChange: (value: number | string) => void;
 	limit: number;
 	bottomSheetRef: MutableRefObject<{ present: () => void; dismiss: () => void; } | null>;
+	selectedCustomers: string[];
+	onClearSelectedCustomersPress: () => void;
 }
 
 const CustomersList = ({
@@ -32,7 +34,9 @@ const CustomersList = ({
 	limit,
 	onPaginate,
 	onRefresh,
-	onLimitChange
+	onLimitChange,
+	selectedCustomers,
+	onClearSelectedCustomersPress
 }: CustomersListProps) => {
 	const renderItem = useCallback(({ item }: { item: string }) => (
 		<CustomerItemContainer id={item} />
@@ -40,32 +44,40 @@ const CustomersList = ({
 
 	const renderHeader = useCallback(() => (
 		<>
-			<Text style={{ marginBottom: SPACING.sm, marginTop: SPACING.md }} textAlign="center" type="h4" weight="bold">{`${ids?.length} `}
-				<Text type="h4">clientes encontrados</Text>
-			</Text>
+			{selectedCustomers?.length ? (
+				<Text style={{ marginBottom: SPACING.xl, marginTop: SPACING.md }} textAlign="center" type="h4" weight="bold">
+					Clientes selecionados: {selectedCustomers.length}
+				</Text>
+			) : (
+				<>
+					<Text style={{ marginBottom: SPACING.sm, marginTop: SPACING.md }} textAlign="center" type="h4" weight="bold">{`${ids?.length} `}
+						<Text type="h4">clientes encontrados</Text>
+					</Text>
 
-			<Flex align="center" direction="row" gap={4} justify="center">
-				<Text style={{ marginBottom: SPACING.xl }} textAlign="center" type="h4">Clientes por página: </Text>
-				<Picker
-					compact
-					data={[{
-						label: '5',
-						value: 5
-					}, {
-						label: '10',
-						value: 10
-					}, {
-						label: '15',
-						value: 15
-					}]}
-					style={{ width: 70 }}
-					value={limit}
-					onChange={value => onLimitChange(value)}
-				/>
-			</Flex>
+					<Flex align="center" direction="row" gap={4} justify="center">
+						<Text style={{ marginBottom: SPACING.xl }} textAlign="center" type="h4">Clientes por página: </Text>
 
+						<Picker
+							compact
+							data={[{
+								label: '5',
+								value: 5
+							}, {
+								label: '10',
+								value: 10
+							}, {
+								label: '15',
+								value: 15
+							}]}
+							style={{ width: 70 }}
+							value={limit}
+							onChange={value => onLimitChange(value)}
+						/>
+					</Flex>
+				</>
+			)}
 		</>
-	), [ids?.length, limit, onLimitChange]);
+	), [ids?.length, limit, onLimitChange, selectedCustomers.length]);
 
 	return (
 		<Container flex padded>
@@ -82,9 +94,15 @@ const CustomersList = ({
 				onRefresh={onRefresh}
 			/>
 
-			<Button block outline style={{ marginTop: SPACING.md, marginBottom: SPACING.md }} onPress={onCreateCustomerPress}>
-            	Criar cliente
-			</Button>
+			{selectedCustomers?.length ? (
+				<Button block outline style={{ marginTop: SPACING.md, marginBottom: SPACING.md }} onPress={onClearSelectedCustomersPress}>
+            		Limpar clientes selecionados
+				</Button>
+			) : (
+				<Button block outline style={{ marginTop: SPACING.md, marginBottom: SPACING.md }} onPress={onCreateCustomerPress}>
+					Criar cliente
+				</Button>
+			)}
 
 			<CustomerFormContainer
 				ref={bottomSheetRef}
