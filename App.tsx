@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -14,6 +15,7 @@ const App = () => (
 				<MainNavigator />
 			</SafeAreaProvider>
 		</PersistGate>
+		<Toast />
 	</Provider>
 );
 
